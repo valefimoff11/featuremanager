@@ -1,5 +1,4 @@
 import cmd, sys
-from turtle import *
 
 from src.io_interfaces.io_interfaces import query_key_from_db
 
@@ -13,11 +12,10 @@ class MarketResearchShell(cmd.Cmd):
         'Get the standard deviation of a feature:  get_feature_std feature_0'
         print(query_key_from_db(arg))
 
-    def do_bye(self, arg):
+    def do_close(self, arg):
         'Close the CLI Shell and Exit:  BYE'
         print('Thank you for using the Market Research Platform')
         self.close()
-        bye()
         return True
 
     def close(self):
