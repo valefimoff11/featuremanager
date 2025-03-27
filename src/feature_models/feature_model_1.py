@@ -1,5 +1,4 @@
 import sys
-
 import pandas as pd
 
 from src.datamanagement.data_manager import df_shift
@@ -30,8 +29,6 @@ for feature_name in feature_names:
 
 feature_price_cor_df = pd.DataFrame(cors, index=time_lags)
 print(feature_price_cor_df)
-#feature_price_cor_df.loc[1, 'feature_0'] =0.9
-#print(feature_price_cor_df)
 
 model_dataset_df = pd.concat([prices_df["price"], features_df], axis=1)
 print(model_dataset_df)
