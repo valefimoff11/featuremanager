@@ -1,6 +1,8 @@
 import pandas as pd
 import shelve
 
+DB_LOCATION = "E:\\tst-data\\feature_stats_db"
+
 def get_prices_df():
     return pd.read_parquet("E:\\tst-data\\prices.parquet")
 def get_features_df():
@@ -8,7 +10,7 @@ def get_features_df():
 
 def persist_series_in_object_db(df):
 
-    d = shelve.open("E:\\tst-data\\feature_stats_db")
+    d = shelve.open(DB_LOCATION)
 
     for index, value in df.items():
         d[index] = value
@@ -18,7 +20,7 @@ def persist_series_in_object_db(df):
 
 def persist_df_in_object_db(df):
 
-    d = shelve.open("E:\\tst-data\\feature_stats_db")
+    d = shelve.open(DB_LOCATION)
 
     column_names = df.columns.values.tolist()
 
