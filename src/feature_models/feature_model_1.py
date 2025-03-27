@@ -5,7 +5,7 @@ import pandas as pd
 from src.datamanagement.data_manager import df_shift
 from src.featurereader.rd import get_prices_df, get_features_df
 
-# for prod solution this would be populated from config file
+# for prod solution the list of timelags would be populated from config file
 time_lags = [1, 5, 10]
 number_of_timelags = len(time_lags)
 cors = {}
