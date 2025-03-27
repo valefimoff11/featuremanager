@@ -84,12 +84,10 @@ print(features_std)
 
 #################################################################################################################
 #
-# Data Preparation: Persist Output Data to external DB
+# Data Preparation: Persist Output Data to simulated external, key/value DB
 #
 #################################################################################################################
 
 persist_df_in_object_db(feature_price_cor_df)
 persist_df_in_object_db(features_correlation_matrix)
 persist_series_in_object_db(features_std)
-
-print( query_key_from_db('feature_0') )

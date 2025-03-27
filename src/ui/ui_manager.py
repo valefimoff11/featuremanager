@@ -4,7 +4,7 @@ from turtle import *
 from src.io_interfaces.io_interfaces import query_key_from_db
 
 
-class TurtleShell(cmd.Cmd):
+class MarketResearchShell(cmd.Cmd):
     intro = 'Welcome to the Markets Research Platform shell.   Type help or ? to list commands.\n'
     prompt = 'markets_research> '
     file = None
@@ -31,4 +31,4 @@ def parse(arg):
     return tuple(map(int, arg.split()))
 
 if __name__ == '__main__':
-    TurtleShell().cmdloop()
+    MarketResearchShell().cmdloop()
