@@ -49,7 +49,7 @@ print(model_dataset_df)
 
 #################################################################################################################
 #
-# Calculation of Correlation of Features to Price at range of timelags
+# Calculation of Correlation of Features to Price Returns at range of timelags
 #
 #################################################################################################################
 for lag in time_lags:
