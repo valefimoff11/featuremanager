@@ -3,7 +3,6 @@ from turtle import *
 
 from src.io_interfaces.io_interfaces import query_key_from_db
 
-
 class MarketResearchShell(cmd.Cmd):
     intro = 'Welcome to the Markets Research Platform shell.   Type help or ? to list commands.\n'
     prompt = 'markets_research> '
