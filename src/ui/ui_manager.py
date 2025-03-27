@@ -1,6 +1,9 @@
 import cmd, sys
 from turtle import *
 
+from src.io_interfaces.io_interfaces import query_key_from_db
+
+
 class TurtleShell(cmd.Cmd):
     intro = 'Welcome to the Markets Research Platform shell.   Type help or ? to list commands.\n'
     prompt = 'markets_research> '
@@ -9,7 +12,7 @@ class TurtleShell(cmd.Cmd):
     # ----- basic commands -----
     def do_get_feature_std(self, arg):
         'Get the standard deviation of a feature:  get_feature_std feature_0'
-        forward(*parse(arg))
+        print(query_key_from_db(arg))
 
     def do_bye(self, arg):
         'Close the CLI Shell and Exit:  BYE'
