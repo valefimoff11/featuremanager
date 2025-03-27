@@ -61,8 +61,6 @@ print()
 print(feature_price_cor_df)
 print(type(feature_price_cor_df))
 
-persist_df_in_object_db(feature_price_cor_df)
-
 #################################################################################################################
 #
 # Calculation of Correlation Matrix of Features
@@ -73,8 +71,6 @@ features_only_df = features_df[features_df.columns.difference(['timestamp'])]
 features_correlation_matrix = features_only_df.corr()
 print(features_correlation_matrix)
 print(type(features_correlation_matrix))
-
-persist_df_in_object_db(features_correlation_matrix)
 
 #################################################################################################################
 #
@@ -91,4 +87,6 @@ print(features_std)
 #
 #################################################################################################################
 
+persist_df_in_object_db(feature_price_cor_df)
+persist_df_in_object_db(features_correlation_matrix)
 persist_series_in_object_db(features_std)
