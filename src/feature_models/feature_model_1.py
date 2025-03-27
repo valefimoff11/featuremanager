@@ -9,17 +9,17 @@ time_lags = [1, 5, 10]
 number_of_timelags = len(time_lags)
 cors = {}
 
-prices_df = get_prices_df()
-features_df = get_features_df()
-
-print(prices_df)
-print(features_df)
-
 #################################################################################################################
 #
 # Data Preparation
 #
 #################################################################################################################
+
+prices_df = get_prices_df()
+features_df = get_features_df()
+
+print(prices_df)
+print(features_df)
 
 feature_names = features_df.columns.values.tolist()
 feature_names.remove('timestamp')
