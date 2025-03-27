@@ -2,7 +2,8 @@ import sys
 import pandas as pd
 
 from src.datamanagement.data_manager import df_shift
-from src.io.io_interfaces import get_prices_df, get_features_df, persist_series_in_object_db, persist_df_in_object_db
+from src.io_interfaces.io_interfaces import get_prices_df, get_features_df, persist_series_in_object_db, \
+    persist_df_in_object_db, query_key_from_db
 
 # for prod solution the list of timelags would be populated from config file
 time_lags = [1, 5, 10]
@@ -90,3 +91,5 @@ print(features_std)
 persist_df_in_object_db(feature_price_cor_df)
 persist_df_in_object_db(features_correlation_matrix)
 persist_series_in_object_db(features_std)
+
+print( query_key_from_db('feature_0') )

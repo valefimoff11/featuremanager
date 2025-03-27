@@ -31,3 +31,10 @@ def persist_df_in_object_db(df):
             d[column_name + ":" + str(index)] = df.loc[index, column_name]
 
     d.close()
+
+def query_key_from_db(key):
+
+    d = shelve.open(DB_LOCATION)
+    value = d[key]
+    d.close()
+    return value
