@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def df_shift(df, target=None, lag=0):
     if not lag and not target:
         return df

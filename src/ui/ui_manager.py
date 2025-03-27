@@ -5,6 +5,7 @@ from src.models.feature_model_1 import FeatureStatsModel
 
 
 class MarketResearchShell(cmd.Cmd):
+
     intro = 'Welcome to the Markets Research Platform shell.   Type help or ? to list commands.\n'
     prompt = 'markets_research> '
     file = None
@@ -15,7 +16,7 @@ class MarketResearchShell(cmd.Cmd):
 
     def do_run_model(self, arg):
         'Run the Feature Stats Model and persist its results in key/value object DB:  run_model'
-        FeatureStatsModel()
+        FeatureStatsModel().run_model()
 
     def do_close(self, arg):
         'Close the CLI Shell and Exit:  BYE'
