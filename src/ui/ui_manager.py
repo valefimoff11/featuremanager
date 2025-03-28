@@ -69,7 +69,7 @@ class MarketResearchShell(cmd.Cmd):
         FeatureStatsModel(MarketResearchShell.io_interfaces).run_model()
 
     def do_get_all_keys_in_db(self, arg):
-        'Get all keys in the object DB:  get_all_keys_in_db'
+        'Get all keys in the object DB to know what queries to submit:  get_all_keys_in_db'
 
         if MarketResearchShell.io_interfaces is None:
             print("First you need to enter IO Paths by invoking the command: enter_io_paths")
