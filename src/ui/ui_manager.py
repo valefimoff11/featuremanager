@@ -24,7 +24,7 @@ class MarketResearchShell(cmd.Cmd):
         MarketResearchShell.io_interfaces = IOInterfaces(PRICES_PATH, FEATURES_PATH, DB_LOCATION)
 
     def do_get_feature_std(self, arg):
-        'Get the standard deviation of a feature:  get_feature_std feature_0'
+        'Query the Object DB to get the standard deviation of a feature:  get_feature_std feature_0'
         print(MarketResearchShell.io_interfaces.query_key_from_db(arg))
 
     def do_run_model(self, arg):
@@ -32,7 +32,7 @@ class MarketResearchShell(cmd.Cmd):
         FeatureStatsModel(MarketResearchShell.io_interfaces).run_model()
 
     def do_quit(self, arg):
-        'Close the CLI Shell and Exit:  BYE'
+        'Close the CLI Shell and Exit:  quit'
         print('Thank you for using the Market Research Platform')
         self.quit()
         return True
