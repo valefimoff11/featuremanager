@@ -1,4 +1,4 @@
-import cmd, sys
+import cmd
 
 from src.io_interfaces.io_interfaces import IOInterfaces
 from src.models.feature_model_1 import FeatureStatsModel
@@ -67,6 +67,17 @@ class MarketResearchShell(cmd.Cmd):
             return
 
         FeatureStatsModel(MarketResearchShell.io_interfaces).run_model()
+
+    def do_get_all_keys_in_db(self, arg):
+        'Get all keys in the object DB:  get_all_keys_in_db'
+
+        if MarketResearchShell.io_interfaces is None:
+            print("First you need to enter IO Paths by invoking the command: enter_io_paths")
+            return
+
+        klist = MarketResearchShell.io_interfaces.get_all_keys_from_db()
+        for key in klist:
+            print(key)
 
     def do_quit(self, arg):
         'Close the CLI Shell and Exit:  quit'

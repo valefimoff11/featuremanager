@@ -43,3 +43,10 @@ class IOInterfaces():
         value = d[key]
         d.close()
         return value
+
+    def get_all_keys_from_db(self):
+
+        d = shelve.open(self.db_path)
+        klist = list(d.keys())
+        d.close()
+        return klist
