@@ -11,3 +11,5 @@ during the session of the UI Manager (of course in PROD context, analysis of vol
 
 Note: On purpose, only one unit test is implemented, focused on the Data Manager module to demonstrate the overall approach to testing  (while at the same time saving 
 time considering that this is a demo task). The use of fixtures for test preparation and test data reuse is demonstrated too 
+
+print() instead of logging is used for more straighforward and streamlined visualization of intermediate numerical results from the app, considering it is a toy example
