@@ -2,10 +2,16 @@ import sys
 import pandas as pd
 
 from src.datamanagement.data_manager import df_shift
-from src.io_interfaces.io_interfaces import get_prices_df, get_features_df, persist_series_in_object_db, \
-    persist_df_in_object_db, query_key_from_db
+from src.io_interfaces.io_interfaces import IOInterfaces
+
 
 class FeatureStatsModel():
+
+    def __init__(self, io_interfaces=None):
+        self.io_interfaces = io_interfaces
+
+    def set_io_interfaces(self, io_interfaces):
+        self.io_interfaces = io_interfaces
 
     def run_model(self):
 
@@ -20,8 +26,8 @@ class FeatureStatsModel():
         #
         #################################################################################################################
 
-        prices_df = get_prices_df()
-        features_df = get_features_df()
+        prices_df = self.io_interfaces.get_prices_df()
+        features_df = self.io_interfaces.get_features_df()
 
         print(prices_df)
         print(features_df)
@@ -92,10 +98,17 @@ class FeatureStatsModel():
         #
         #################################################################################################################
 
-        persist_df_in_object_db(feature_price_cor_df)
-        persist_df_in_object_db(features_correlation_matrix)
-        persist_series_in_object_db(features_std)
+        self.io_interfaces.persist_df_in_object_db(feature_price_cor_df)
+        self.io_interfaces.persist_df_in_object_db(features_correlation_matrix)
+        self.io_interfaces.persist_series_in_object_db(features_std)
 
 
 if __name__ == '__main__':
-    FeatureStatsModel().run_model()
+
+    DB_LOCATION = "E:\\tst-data\\feature_stats_db"
+    FEATURES_PATH = "E:\\tst-data\\features.parquet"
+    PRICES_PATH = "E:\\tst-data\\prices.parquet"
+
+    io_interfcaes = IOInterfaces(PRICES_PATH, FEATURES_PATH, DB_LOCATION)
+
+    FeatureStatsModel(io_interfcaes).run_model()

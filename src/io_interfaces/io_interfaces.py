@@ -1,40 +1,45 @@
 import pandas as pd
 import shelve
 
-DB_LOCATION = "E:\\tst-data\\feature_stats_db"
+class IOInterfaces():
 
-def get_prices_df():
-    return pd.read_parquet("E:\\tst-data\\prices.parquet")
-def get_features_df():
-    return pd.read_parquet("E:\\tst-data\\features.parquet")
+    def __init__(self, prices_path=None, features_path=None, db_path=None):
+        self.prices_path = prices_path
+        self.features_path = features_path
+        self.db_path = db_path
 
-def persist_series_in_object_db(df):
+    def get_prices_df(self):
+        return pd.read_parquet(self.prices_path)
+    def get_features_df(self):
+        return pd.read_parquet(self.features_path)
 
-    d = shelve.open(DB_LOCATION)
+    def persist_series_in_object_db(self, df):
 
-    for index, value in df.items():
-        d[index] = value
-        print(index)
+        d = shelve.open(self.db_path)
 
-    d.close()
-
-def persist_df_in_object_db(df):
-
-    d = shelve.open(DB_LOCATION)
-
-    column_names = df.columns.values.tolist()
-
-    for column_name in column_names:
-        for index in df.index.values:
+        for index, value in df.items():
+            d[index] = value
             print(index)
-            print(column_name + ":" + str(index))
-            d[column_name + ":" + str(index)] = df.loc[index, column_name]
 
-    d.close()
+        d.close()
 
-def query_key_from_db(key):
+    def persist_df_in_object_db(self, df):
 
-    d = shelve.open(DB_LOCATION)
-    value = d[key]
-    d.close()
-    return value
+        d = shelve.open(self.db_path)
+
+        column_names = df.columns.values.tolist()
+
+        for column_name in column_names:
+            for index in df.index.values:
+                print(index)
+                print(column_name + ":" + str(index))
+                d[column_name + ":" + str(index)] = df.loc[index, column_name]
+
+        d.close()
+
+    def query_key_from_db(self, key):
+
+        d = shelve.open(self.db_path)
+        value = d[key]
+        d.close()
+        return value
