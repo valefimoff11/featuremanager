@@ -10,12 +10,17 @@ class MarketResearchShell(cmd.Cmd):
     file = None
     io_interfaces = None
 
-    def do_get_io_paths(self, arg):
-        'Get the standard deviation of a feature:  get_io_paths'
+    def do_enter_io_paths(self, arg):
+        'Enter the paths for IO Interfaces:  get_io_paths'
 
-        DB_LOCATION = "E:\\tst-data\\feature_stats_db"
-        FEATURES_PATH = "E:\\tst-data\\features.parquet"
-        PRICES_PATH = "E:\\tst-data\\prices.parquet"
+        #PRICES_PATH = "E:\\tst-data\\prices.parquet"
+        #FEATURES_PATH = "E:\\tst-data\\features.parquet"
+        #DB_LOCATION = "E:\\tst-data\\feature_stats_db"
+
+        PRICES_PATH = input("Enter Prices file path: ")
+        FEATURES_PATH = input("Enter Features file path: ")
+        DB_LOCATION = input("Enter Object DB file path: ")
+
         MarketResearchShell.io_interfaces = IOInterfaces(PRICES_PATH, FEATURES_PATH, DB_LOCATION)
 
     def do_get_feature_std(self, arg):
@@ -24,7 +29,7 @@ class MarketResearchShell(cmd.Cmd):
 
     def do_run_model(self, arg):
         'Run the Feature Stats Model and persist its results in key/value object DB:  run_model'
-        FeatureStatsModel().run_model()
+        FeatureStatsModel(MarketResearchShell.io_interfaces).run_model()
 
     def do_quit(self, arg):
         'Close the CLI Shell and Exit:  BYE'
