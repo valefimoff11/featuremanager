@@ -31,6 +31,22 @@ class MarketResearchShell(cmd.Cmd):
         for feature_name in arg_list:
             print(f"feature_name: {feature_name}, feature std: {MarketResearchShell.io_interfaces.query_key_from_db(feature_name)}")
 
+    def do_get_feature_to_feature_cor(self, arg):
+        'Query the Object DB to get feature to feature correlation:  get_feature_to_feature_cor feature_0:feature_1 feature_0:feature_2 .... etc'
+
+        arg_list = arg.split()
+
+        for feature_pair in arg_list:
+            print(f"feature_pair: {feature_pair}, correlation: {MarketResearchShell.io_interfaces.query_key_from_db(feature_pair)}")
+
+    def do_get_feature_to_price_cor(self, arg):
+        'Query the Object DB to get feature to price return correlation at specific time lag:  get_feature_to_price_cor feature_0:1 feature_0:5 .... etc'
+
+        arg_list = arg.split()
+
+        for feature_pair in arg_list:
+            print(f"feature_name and time_lag: {feature_pair}, correlation with price: {MarketResearchShell.io_interfaces.query_key_from_db(feature_pair)}")
+
     def do_run_model(self, arg):
         'Run the Feature Stats Model and persist its results in key/value object DB:  run_model'
         FeatureStatsModel(MarketResearchShell.io_interfaces).run_model()
