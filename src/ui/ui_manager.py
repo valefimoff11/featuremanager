@@ -11,7 +11,7 @@ class MarketResearchShell(cmd.Cmd):
     io_interfaces = None
 
     def do_enter_io_paths(self, arg):
-        'Enter the paths for IO Interfaces:  get_io_paths'
+        'Enter the paths for IO Interfaces:  enter_io_paths'
 
         #PRICES_PATH = "E:\\tst-data\\prices.parquet"
         #FEATURES_PATH = "E:\\tst-data\\features.parquet"
@@ -26,6 +26,10 @@ class MarketResearchShell(cmd.Cmd):
     def do_get_feature_std(self, arg):
         'Query the Object DB to get the standard deviation of a feature:  get_feature_std feature_0 feature_1 .... etc'
 
+        if MarketResearchShell.io_interfaces is None:
+            print("First you need to enter IO Paths by invoking the command: enter_io_paths")
+            return
+
         arg_list = arg.split()
 
         for feature_name in arg_list:
@@ -33,6 +37,10 @@ class MarketResearchShell(cmd.Cmd):
 
     def do_get_feature_to_feature_cor(self, arg):
         'Query the Object DB to get feature to feature correlation:  get_feature_to_feature_cor feature_0:feature_1 feature_0:feature_2 .... etc'
+
+        if MarketResearchShell.io_interfaces is None:
+            print("First you need to enter IO Paths by invoking the command: enter_io_paths")
+            return
 
         arg_list = arg.split()
 
@@ -42,6 +50,10 @@ class MarketResearchShell(cmd.Cmd):
     def do_get_feature_to_price_cor(self, arg):
         'Query the Object DB to get feature to price return correlation at specific time lag:  get_feature_to_price_cor feature_0:1 feature_0:5 .... etc'
 
+        if MarketResearchShell.io_interfaces is None:
+            print("First you need to enter IO Paths by invoking the command: enter_io_paths")
+            return
+
         arg_list = arg.split()
 
         for feature_pair in arg_list:
@@ -49,6 +61,11 @@ class MarketResearchShell(cmd.Cmd):
 
     def do_run_model(self, arg):
         'Run the Feature Stats Model and persist its results in key/value object DB:  run_model'
+
+        if MarketResearchShell.io_interfaces is None:
+            print("First you need to enter IO Paths by invoking the command: enter_io_paths")
+            return
+
         FeatureStatsModel(MarketResearchShell.io_interfaces).run_model()
 
     def do_quit(self, arg):
