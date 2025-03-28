@@ -24,8 +24,12 @@ class MarketResearchShell(cmd.Cmd):
         MarketResearchShell.io_interfaces = IOInterfaces(PRICES_PATH, FEATURES_PATH, DB_LOCATION)
 
     def do_get_feature_std(self, arg):
-        'Query the Object DB to get the standard deviation of a feature:  get_feature_std feature_0'
-        print(MarketResearchShell.io_interfaces.query_key_from_db(arg))
+        'Query the Object DB to get the standard deviation of a feature:  get_feature_std feature_0 feature_1 .... etc'
+
+        arg_list = arg.split()
+
+        for feature_name in arg_list:
+            print(f"feature_name: {feature_name}, feature std: {MarketResearchShell.io_interfaces.query_key_from_db(feature_name)}")
 
     def do_run_model(self, arg):
         'Run the Feature Stats Model and persist its results in key/value object DB:  run_model'
